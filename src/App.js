@@ -4,6 +4,15 @@ import './App.css';
 
 function App() {
     const [message, setMessage] = useState('white');
+    const [force, applyForce] = useState(true);
+
+    useEffect(() => {
+        if (window.parent) {
+            window.parent.postMessage('WINDOW PARENT EXISTS!11111!!!!');
+        } else {
+            setMessage('red');
+        }
+    }, [force]);
 
     useEffect(() => {
         window.addEventListener(
@@ -17,14 +26,15 @@ function App() {
         );
     }, []);
 
-    if (window.parent) {
-        window.parent.postMessage('JESUS CHRIST IS OUR GOD');
-    }
-
     return (
         <div className='App'>
             <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
+                <img
+                    src={logo}
+                    className='App-logo'
+                    alt='logo'
+                    onClick={() => applyForce(!force)}
+                />
                 <p
                     style={{
                         background: message || 'white',
