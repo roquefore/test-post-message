@@ -40,6 +40,17 @@ function App() {
                 <p className='App-link' onClick={() => applyForce(!force)}>
                     Learn React
                 </p>
+                <p
+                    onClick={() => {
+                        try {
+                            window.parent.postMessage('WINDOW PARENT EXISTS!11111!!!!');
+                        } catch (err) {
+                            alert(JSON.stringify(err, null, 2));
+                        }
+                    }}
+                >
+                    SEND PARENT MESSAGE
+                </p>
             </header>
         </div>
     );
