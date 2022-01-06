@@ -13,6 +13,7 @@ function App() {
                 console.log(event);
 
                 setMessage(JSON.stringify(event, null, 2));
+                event.source.postMessage('Message received', event);
             },
             false,
         );
