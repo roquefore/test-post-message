@@ -1,14 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+    const [message, setMessage] = useState('None');
+
     useEffect(() => {
         window.addEventListener(
             'message',
             (event) => {
                 console.log('event');
                 console.log(event);
+
+                setMessage(JSON.stringify(event, null, 2));
             },
             false,
         );
@@ -19,7 +23,7 @@ function App() {
             <header className='App-header'>
                 <img src={logo} className='App-logo' alt='logo' />
                 <p>
-                    Edit <code>src/App.js</code> and save to reload.
+                    Edit <code>{message}</code> and save to reload.
                 </p>
                 <a
                     className='App-link'
