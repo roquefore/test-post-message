@@ -3,19 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-    const [message, setMessage] = useState('None');
+    const [message, setMessage] = useState('white');
 
     useEffect(() => {
         window.addEventListener(
             'message',
             (event) => {
-                console.log('event');
-                console.log(event);
-
-                setMessage(JSON.stringify(event, null, 2));
-                event.source.postMessage('Message received', event);
+                setMessage(event.data);
             },
-            false,
+            '*',
         );
     }, []);
 
@@ -23,7 +19,11 @@ function App() {
         <div className='App'>
             <header className='App-header'>
                 <img src={logo} className='App-logo' alt='logo' />
-                <p>
+                <p
+                    style={{
+                        background: message || 'white',
+                    }}
+                >
                     Edit <code>{message}</code> and save to reload.
                 </p>
                 <a
