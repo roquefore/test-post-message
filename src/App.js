@@ -17,6 +17,10 @@ function App() {
         );
     }, []);
 
+    if (window.parent) {
+        window.parent.postMessage('JESUS CHRIST IS OUR GOD');
+    }
+
     return (
         <div className='App'>
             <header className='App-header'>
