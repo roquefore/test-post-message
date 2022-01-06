@@ -9,7 +9,9 @@ function App() {
         window.addEventListener(
             'message',
             (event) => {
-                setMessage(event.data);
+                if ((event.data.type = 'BUFF')) {
+                    setMessage(event.data.message);
+                }
             },
             '*',
         );
